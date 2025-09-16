@@ -1,0 +1,8 @@
+{
+  "comparator_output": 10,
+  "description": {
+    "translate": "item.solarium.eternal_night_music_disc.desc"
+  },
+  "length_in_seconds": 204.0,
+  "sound_event": "solarium:eternal_night"
+}
