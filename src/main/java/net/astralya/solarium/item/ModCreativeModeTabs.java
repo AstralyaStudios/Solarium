@@ -1,6 +1,7 @@
 package net.astralya.solarium.item;
 
 import net.astralya.solarium.SolariumMod;
+import net.astralya.solarium.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,6 +22,10 @@ public class ModCreativeModeTabs {
 
                 // Tools & Utilities
                 output.accept(ModItems.WRENCH.get());
+                output.accept(ModItems.ENERGY_METER.get());
+
+                // Energy Generator
+                output.accept(ModBlocks.SUNFLOWER_GENERATOR);
 
                 // Misc Items
                 output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
