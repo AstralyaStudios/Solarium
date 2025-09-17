@@ -7,6 +7,7 @@
   "item.solarium.eternal_night_music_disc.desc": "Trance YuCahr - Eternal Night",
 
   "block.solarium.sunflower_generator": "Sunflower Generator",
+  "block.solarium.led_panel": "Led Panel",
 
   "tooltip.solarium.energy_item": "Right-click to view energy on a block"
 }

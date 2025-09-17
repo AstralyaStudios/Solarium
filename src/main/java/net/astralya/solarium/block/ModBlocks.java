@@ -32,6 +32,10 @@ public class ModBlocks {
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
+    // PANEL LED
+    public static final DeferredBlock<Block> LED_PANEL = registerBlock("led_panel",
+            () -> new Block(BlockBehaviour.Properties.of().noOcclusion().lightLevel(state -> 15)));
+
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
