@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "solarium:block/sunflower_generator",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "solarium:block/sunflower_generator"
+    },
+    "facing=south": {
+      "model": "solarium:block/sunflower_generator",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "solarium:block/sunflower_generator",
+      "y": 270
+    }
+  }
+}

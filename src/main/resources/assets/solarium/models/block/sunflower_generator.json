@@ -1,0 +1,166 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"render_type": "cutout",
+	"textures": {
+		"4": "solarium:block/sunflower_generator",
+		"particle": "solarium:block/sunflower_generator"
+	},
+	"elements": [
+		{
+			"name": "petal1",
+			"from": [9, 0.4, 5.5],
+			"to": [9, 7.4, 10.5],
+			"rotation": {"angle": -45, "axis": "z", "origin": [9, 0.4, 5.5]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"east": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"west": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"up": {"uv": [0, 0, 0, 5], "texture": "#4"},
+				"down": {"uv": [0, 0, 0, 5], "texture": "#4"}
+			}
+		},
+		{
+			"name": "petal2",
+			"from": [7, 0.4, 5.5],
+			"to": [7, 7.4, 10.5],
+			"rotation": {"angle": 45, "axis": "z", "origin": [7, 0.4, 5.5]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"east": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"west": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"up": {"uv": [0, 0, 0, 5], "texture": "#4"},
+				"down": {"uv": [0, 0, 0, 5], "texture": "#4"}
+			}
+		},
+		{
+			"name": "petal3",
+			"from": [5.4, 0.35, 7.1],
+			"to": [10.4, 7.35, 7.1],
+			"rotation": {"angle": -45, "axis": "x", "origin": [10.4, 0.35, 7.1]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"south": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"up": {"uv": [0, 0, 0, 5], "rotation": 90, "texture": "#4"},
+				"down": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"}
+			}
+		},
+		{
+			"name": "petal4",
+			"from": [5.4, 0.35, 8.9],
+			"to": [10.4, 7.35, 8.9],
+			"rotation": {"angle": 45, "axis": "x", "origin": [10.4, 0.35, 8.9]},
+			"faces": {
+				"north": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"south": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 7], "texture": "#4"},
+				"up": {"uv": [0, 0, 0, 5], "rotation": 90, "texture": "#4"},
+				"down": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"}
+			}
+		},
+		{
+			"name": "bpetal1",
+			"from": [6.22487, 0.55, 0.45],
+			"to": [11.22487, 0.55, 7.45],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8.75, 0.55, 7.45]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 7], "rotation": 90, "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 7], "rotation": 270, "texture": "#4"},
+				"up": {"uv": [0, 0, 6, 10], "texture": "#4"},
+				"down": {"uv": [0, 0, 6, 10], "rotation": 180, "texture": "#4"}
+			}
+		},
+		{
+			"name": "bpetal2",
+			"from": [0.75, 0.55, 4.97513],
+			"to": [7.75, 0.55, 9.97513],
+			"rotation": {"angle": -45, "axis": "y", "origin": [7.75, 0.55, 7.45]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 7], "rotation": 90, "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 7], "rotation": 270, "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"up": {"uv": [0, 0, 6, 10], "rotation": 270, "texture": "#4"},
+				"down": {"uv": [0, 0, 6, 10], "rotation": 270, "texture": "#4"}
+			}
+		},
+		{
+			"name": "bpetal3",
+			"from": [5.27513, 0.55, 8.75],
+			"to": [10.27513, 0.55, 15.75],
+			"rotation": {"angle": -45, "axis": "y", "origin": [7.75, 0.55, 8.75]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 7], "rotation": 270, "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 7], "rotation": 90, "texture": "#4"},
+				"up": {"uv": [0, 0, 6, 10], "rotation": 180, "texture": "#4"},
+				"down": {"uv": [0, 0, 6, 10], "texture": "#4"}
+			}
+		},
+		{
+			"name": "bpetal4",
+			"from": [8.75, 0.55, 5.92487],
+			"to": [15.75, 0.55, 10.92487],
+			"rotation": {"angle": -45, "axis": "y", "origin": [8.75, 0.55, 8.45]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 7], "rotation": 270, "texture": "#4"},
+				"east": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"south": {"uv": [0, 0, 0, 7], "rotation": 90, "texture": "#4"},
+				"west": {"uv": [0, 0, 0, 5], "rotation": 270, "texture": "#4"},
+				"up": {"uv": [0, 0, 6, 10], "rotation": 90, "texture": "#4"},
+				"down": {"uv": [0, 0, 6, 10], "rotation": 90, "texture": "#4"}
+			}
+		},
+		{
+			"name": "bud",
+			"from": [7, 0.4, 7],
+			"to": [9, 2.4, 9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, 0.4, 7]},
+			"faces": {
+				"north": {"uv": [2, 12, 4, 14], "texture": "#4"},
+				"east": {"uv": [2, 12, 4, 14], "texture": "#4"},
+				"south": {"uv": [2, 12, 4, 14], "texture": "#4"},
+				"west": {"uv": [2, 12, 4, 14], "texture": "#4"},
+				"up": {"uv": [2, 12, 4, 14], "texture": "#4"},
+				"down": {"uv": [2, 12, 4, 14], "texture": "#4"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "lilypad",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": []
+		},
+		{
+			"name": "petals",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [
+				{
+					"name": "top_petals",
+					"origin": [10.4, 0.35, 10.9],
+					"color": 0,
+					"children": [0, 1, 2, 3]
+				},
+				{
+					"name": "bottom_petals",
+					"origin": [8, 8, 8],
+					"color": 0,
+					"children": [4, 5, 6, 7]
+				},
+				8
+			]
+		}
+	]
+}

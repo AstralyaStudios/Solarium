@@ -1,10 +1,13 @@
 package net.astralya.solarium.block;
 
 import net.astralya.solarium.SolariumMod;
+import net.astralya.solarium.block.custom.SunflowerGeneratorBlock;
 import net.astralya.solarium.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -15,6 +18,9 @@ public class ModBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SolariumMod.MODID);
 
+    // Energy Generators
+    public static final DeferredBlock<Block> SUNFLOWER_GENERATOR = registerBlock("sunflower_generator",
+            () -> new SunflowerGeneratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
