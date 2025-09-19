@@ -8,5 +8,8 @@
 
   "block.solarium.sunflower_generator": "Sunflower Generator",
 
-  "tooltip.solarium.energy_item": "Right-click to view energy on a block"
+  "message.solarium.energy_meter.reading": "Stored Energy: %s / %s FE",
+  "message.solarium.energy_meter.none": "No energy capability found.",
+  "tooltip.solarium.energy_item": "Reads stored FE from generators.",
+  "tooltip.solarium.energy_item.crouch": "Sneak-right-click a generator to scan."
 }

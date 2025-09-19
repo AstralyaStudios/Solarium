@@ -1,8 +1,11 @@
 package net.astralya.solarium;
 
 import net.astralya.solarium.block.ModBlocks;
+import net.astralya.solarium.block.entity.ModBlockEntityTypes;
 import net.astralya.solarium.item.ModCreativeModeTabs;
 import net.astralya.solarium.item.ModItems;
+import net.astralya.solarium.screen.ModMenuTypes;
+import net.astralya.solarium.screen.custom.SunflowerGeneratorScreen;
 import net.astralya.solarium.sound.ModSoundEvents;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -37,6 +40,8 @@ public class SolariumMod {
         ModSoundEvents.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
+        ModBlockEntityTypes.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
@@ -70,7 +75,7 @@ public class SolariumMod {
 
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
-
+            event.register(ModMenuTypes.SUNFLOWER_GENERATOR_MENU.get(), SunflowerGeneratorScreen::new);
         }
     }
 }
