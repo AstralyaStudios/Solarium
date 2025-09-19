@@ -26,6 +26,11 @@ public class ModBlocks {
     public static final DeferredBlock<Block> LED_PANEL = registerBlock("led_panel",
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion().lightLevel(state -> 15)));
 
+    // Machines Blocks
+    public static final DeferredBlock<Block> BIOMASA_GEN = registerBlock("biomasa_gen",
+            () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
+
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

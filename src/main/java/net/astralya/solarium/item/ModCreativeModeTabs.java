@@ -31,6 +31,10 @@ public class ModCreativeModeTabs {
 
                 // Misc Items
                 output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
+                output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
+
+                //MACHINEs BLOCK
+                output.accept(ModBlocks.BIOMASA_GEN);
 
 
 
