@@ -2,7 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "solarium:block/solar_panel",
+		"0": "solarium:block/solar_panel_lit",
 		"1": "solarium:block/solar_panel_base",
 		"particle": "solarium:block/solar_panel"
 	},

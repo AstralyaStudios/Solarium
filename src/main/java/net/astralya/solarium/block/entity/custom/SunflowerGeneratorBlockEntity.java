@@ -1,5 +1,6 @@
 package net.astralya.solarium.block.entity.custom;
 
+import net.astralya.solarium.block.custom.SunflowerGeneratorBlock;
 import net.astralya.solarium.block.entity.ModBlockEntityTypes;
 import net.astralya.solarium.block.entity.custom.energy.ModEnergyStorage;
 import net.astralya.solarium.block.entity.custom.energy.ModEnergyUtil;
@@ -8,12 +9,14 @@ import net.astralya.solarium.util.SunlightCheck;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.DustColorTransitionOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -22,15 +25,29 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements MenuProvider {
 
     private static final int MAX_PRODUCTION_PER_TICK = 320;
     private static final int ENERGY_TRANSFER_AMOUNT = 320;
+
+    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
+    private SunlightCheck sun;
+    private int lastProduction;
+    private int particleCooldown = 0;
+
+    private static final float[][] PANEL_CENTERS = new float[][]{
+            {4f, 1.75f, 8f},
+            {12f, 1.75f, 8f},
+            {8f, 1.75f, 4f},
+            {8f, 1.75f, 12f}
+    };
 
     public final ItemStackHandler itemHandler = new ItemStackHandler(1) {
         @Override
@@ -41,10 +58,6 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
             }
         }
     };
-
-    private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
-    private SunlightCheck sun;
-    private int lastProduction;
 
     protected final ContainerData data = new ContainerData() {
         @Override
@@ -87,6 +100,8 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         if (level != null && !level.isClientSide()) {
             sun = new SunlightCheck(level, worldPosition);
             lastProduction = 0;
+            sun.recheckCanSeeSun();
+            updateLit(sun.canSeeSunNow());
         }
     }
 
@@ -133,7 +148,63 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         }
 
         lastProduction = produced;
+        updateLit(sun.canSeeSunNow());
+        spawnPanelParticles(level, pos, state, produced);
         pushEnergyToNeighbourAbove();
+    }
+
+    private void updateLit(boolean lit) {
+        if (level == null) return;
+        BlockState state = getBlockState();
+        if (!state.hasProperty(SunflowerGeneratorBlock.LIT)) return;
+        boolean currentlyLit = state.getValue(SunflowerGeneratorBlock.LIT);
+        if (currentlyLit != lit) {
+            level.setBlock(worldPosition, state.setValue(SunflowerGeneratorBlock.LIT, lit), Block.UPDATE_ALL);
+        }
+    }
+
+    private void spawnPanelParticles(Level level, BlockPos pos, BlockState state, int produced) {
+        if (!(level instanceof ServerLevel server)) return;
+        if (produced <= 0) return;
+
+        if (particleCooldown > 0) {
+            particleCooldown--;
+            return;
+        }
+        particleCooldown = 8;
+
+        int idx = server.getRandom().nextInt(PANEL_CENTERS.length);
+        float cx = PANEL_CENTERS[idx][0];
+        float cy = PANEL_CENTERS[idx][1];
+        float cz = PANEL_CENTERS[idx][2];
+
+        double dx = cx - 8.0;
+        double dz = cz - 8.0;
+
+        Direction facing = state.getValue(SunflowerGeneratorBlock.FACING);
+        double[] r = rotateByFacing(dx, dz, facing);
+        double rx = r[0];
+        double rz = r[1];
+
+        double x = pos.getX() + 0.5 + rx / 16.0 + (server.getRandom().nextDouble() - 0.5) * 0.02;
+        double y = pos.getY() + (cy / 16.0) + 0.02 + server.getRandom().nextDouble() * 0.02;
+        double z = pos.getZ() + 0.5 + rz / 16.0 + (server.getRandom().nextDouble() - 0.5) * 0.02;
+
+        Vector3f from = new Vector3f(255 / 255f, 217 / 255f, 59 / 255f);
+        Vector3f to = new Vector3f(107 / 255f, 142 / 255f, 35 / 255f);
+        DustColorTransitionOptions dust = new DustColorTransitionOptions(from, to, 0.7F);
+
+        server.sendParticles(dust, x, y, z, 1, 0.0, 0.0, 0.0, 0.0);
+    }
+
+    private static double[] rotateByFacing(double dx, double dz, Direction facing) {
+        return switch (facing) {
+            case NORTH -> new double[]{dx, dz};
+            case EAST -> new double[]{dz, -dx};
+            case SOUTH -> new double[]{-dx, -dz};
+            case WEST -> new double[]{-dz, dx};
+            default -> new double[]{dx, dz};
+        };
     }
 
     private void pushEnergyToNeighbourAbove() {
@@ -147,6 +218,7 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         tag.put("sunflower_generator.inventory", itemHandler.serializeNBT(registries));
         tag.putInt("sunflower_generator.energy", ENERGY_STORAGE.getEnergyStored());
         tag.putInt("sunflower_generator.last_production", lastProduction);
+        tag.putInt("sunflower_generator.particle_cooldown", particleCooldown);
         super.saveAdditional(tag, registries);
     }
 
@@ -156,6 +228,7 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         itemHandler.deserializeNBT(registries, tag.getCompound("sunflower_generator.inventory"));
         ENERGY_STORAGE.setEnergy(tag.getInt("sunflower_generator.energy"));
         lastProduction = tag.getInt("sunflower_generator.last_production");
+        particleCooldown = tag.getInt("sunflower_generator.particle_cooldown");
     }
 
     @Override
