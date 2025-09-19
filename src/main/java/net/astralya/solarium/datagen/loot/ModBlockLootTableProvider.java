@@ -6,6 +6,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.neoforged.fml.common.Mod;
+
 import java.util.Set;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
@@ -18,7 +20,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.SUNFLOWER_GENERATOR.get());
+
+        dropSelf(ModBlocks.LED_PANEL.get());
+
+
+
+
+
     }
+
+
+
+
 
     @Override
     protected Iterable<Block> getKnownBlocks() {

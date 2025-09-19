@@ -7,6 +7,7 @@
   "item.solarium.eternal_night_music_disc.desc": "Trance YuCahr - Eternal Night",
 
   "block.solarium.sunflower_generator": "Sunflower Generator",
+  "block.solarium.led_panel": "Led Panel",
 
   "message.solarium.energy_meter.reading": "Stored Energy: %s / %s FE",
   "message.solarium.energy_meter.none": "No energy capability found.",

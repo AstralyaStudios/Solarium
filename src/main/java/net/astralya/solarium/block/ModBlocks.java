@@ -22,6 +22,10 @@ public class ModBlocks {
     public static final DeferredBlock<Block> SUNFLOWER_GENERATOR = registerBlock("sunflower_generator",
             () -> new SunflowerGeneratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
 
+    // Decorative Blocks
+    public static final DeferredBlock<Block> LED_PANEL = registerBlock("led_panel",
+            () -> new Block(BlockBehaviour.Properties.of().noOcclusion().lightLevel(state -> 15)));
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);
