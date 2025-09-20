@@ -16,6 +16,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         basicItem(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
         handheldItem(ModItems.WRENCH.get());
+        handheldItem(ModItems.SOLARIUM_DUST.get());
         basicItem(ModItems.ENERGY_METER.get());
+
     }
 }

@@ -23,8 +23,10 @@ public class ModCreativeModeTabs {
 
                 // Tools & Utilities
                 output.accept(ModItems.WRENCH.get());
+                output.accept(ModItems.SOLARIUM_DUST.get());
                 output.accept(ModItems.ENERGY_METER.get());
                 output.accept(ModBlocks.LED_PANEL.get());
+
 
                 // Energy Generator
                 output.accept(ModBlocks.SUNFLOWER_GENERATOR);

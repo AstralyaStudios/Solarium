@@ -18,6 +18,8 @@ public class ModItems {
     // Tools & Utilities
     public static final DeferredItem<Item> WRENCH = ITEMS.registerItem("wrench",
             Item::new, new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> SOLARIUM_DUST = ITEMS.registerItem("solarium_dust",
+            Item::new, new Item.Properties().stacksTo(1));
     public static final DeferredItem<Item> ENERGY_METER = ITEMS.registerItem("energy_meter",
             EnergyMeterItem::new, new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
 
