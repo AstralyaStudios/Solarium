@@ -1,3 +1,3 @@
-// 1.21.1	2025-09-21T16:40:17.3667657	Tags for minecraft:block mod id solarium
-66795efd0eacf7cddd29f28ac3002bdaa5998fdb data/minecraft/tags/block/mineable/pickaxe.json
-66795efd0eacf7cddd29f28ac3002bdaa5998fdb data/minecraft/tags/block/needs_iron_tool.json
+// 1.21.1	2025-09-21T17:28:20.1186027	Tags for minecraft:block mod id solarium
+40909a836376d9fc3312b2eb6cb20187e6eb8517 data/minecraft/tags/block/mineable/pickaxe.json
+40909a836376d9fc3312b2eb6cb20187e6eb8517 data/minecraft/tags/block/needs_iron_tool.json
