@@ -32,6 +32,8 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
     public static final DeferredBlock<Block> PHOTOSMELTER = registerBlock("photosmelter",
             () -> new PhotosmelterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final DeferredBlock<Block> CABLE = registerBlock("cable",
+            () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

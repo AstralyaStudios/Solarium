@@ -25,6 +25,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.ENERGY_METER.get());
                 output.accept(ModItems.SOLARIUM_DUST.get());
                 output.accept(ModItems.SOLARIUM_INGOT.get());
+                output.accept(ModBlocks.CABLE.get());
 
                 // Energy Generator
                 output.accept(ModBlocks.SUNFLOWER_GENERATOR);
@@ -36,7 +37,7 @@ public class ModCreativeModeTabs {
 
                 // Misc Items
                 output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
-                output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
+
             })
             .build());
 

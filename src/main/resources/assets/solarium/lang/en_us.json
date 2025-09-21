@@ -10,8 +10,10 @@
 
   "block.solarium.sunflower_generator": "Sunflower Generator",
   "block.solarium.led_panel": "Led Panel",
-  "block.solarium.biomass_gen": "Biomass Generator",
+  "block.solarium.biomass_generator": "Biomass Generator",
   "block.solarium.photosmelter": "Photosmelter",
+  "block.solarium.cable": "Energy Cable",
+
 
   "message.solarium.energy_meter.reading": "Stored Energy: %s / %s FE",
   "message.solarium.energy_meter.none": "No energy capability found.",
