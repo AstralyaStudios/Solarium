@@ -1,6 +1,7 @@
 package net.astralya.solarium.block;
 
 import net.astralya.solarium.SolariumMod;
+import net.astralya.solarium.block.custom.GeneradoesBlock;
 import net.astralya.solarium.block.custom.PhotosmelterBlock;
 import net.astralya.solarium.block.custom.SunflowerGeneratorBlock;
 import net.astralya.solarium.item.ModItems;
@@ -32,8 +33,12 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
     public static final DeferredBlock<Block> PHOTOSMELTER = registerBlock("photosmelter",
             () -> new PhotosmelterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+
     public static final DeferredBlock<Block> CABLE = registerBlock("cable",
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
+
+    public static final DeferredBlock<Block> GENERADOES = registerBlock("generadoes",
+            () -> new GeneradoesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

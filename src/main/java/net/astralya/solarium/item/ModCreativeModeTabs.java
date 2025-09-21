@@ -33,6 +33,7 @@ public class ModCreativeModeTabs {
                 // Machine Blocks
                 output.accept(ModBlocks.BIOMASS_GENERATOR);
                 output.accept(ModBlocks.PHOTOSMELTER);
+                output.accept(ModBlocks.GENERADOES);
                 output.accept(ModBlocks.LED_PANEL.get());
 
                 // Misc Items

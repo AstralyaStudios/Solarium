@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "solarium:block/generadoes_front",
+    "side": "solarium:block/generadoes_side",
+    "top": "solarium:block/generadoes_top"
+  }
+}

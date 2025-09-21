@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "solarium:block/generadoes",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "solarium:block/generadoes"
+    },
+    "facing=south": {
+      "model": "solarium:block/generadoes",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "solarium:block/generadoes",
+      "y": 270
+    }
+  }
+}
