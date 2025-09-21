@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -23,23 +22,21 @@ public class ModCreativeModeTabs {
 
                 // Tools & Utilities
                 output.accept(ModItems.WRENCH.get());
-                output.accept(ModItems.SOLARIUM_DUST.get());
                 output.accept(ModItems.ENERGY_METER.get());
-                output.accept(ModBlocks.LED_PANEL.get());
-
+                output.accept(ModItems.SOLARIUM_DUST.get());
+                output.accept(ModItems.SOLARIUM_INGOT.get());
 
                 // Energy Generator
                 output.accept(ModBlocks.SUNFLOWER_GENERATOR);
 
+                // Machine Blocks
+                output.accept(ModBlocks.BIOMASS_GENERATOR);
+                output.accept(ModBlocks.PHOTOSMELTER);
+                output.accept(ModBlocks.LED_PANEL.get());
+
                 // Misc Items
                 output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
                 output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
-
-                //MACHINEs BLOCK
-                output.accept(ModBlocks.BIOMASA_GEN);
-
-
-
             })
             .build());
 

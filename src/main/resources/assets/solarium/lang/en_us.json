@@ -3,16 +3,19 @@
 
   "item.solarium.wrench": "Wrench",
   "item.solarium.solarium_dust": "Solarium Dust",
+  "item.solarium.solarium_ingot": "Solarium Ingot",
   "item.solarium.energy_meter": "Energy Meter",
   "item.solarium.eternal_night_music_disc": "Eternal Night Music Disc",
   "item.solarium.eternal_night_music_disc.desc": "Trance YuCahr - Eternal Night",
 
   "block.solarium.sunflower_generator": "Sunflower Generator",
   "block.solarium.led_panel": "Led Panel",
-  "block.solarium.biomasa_gen": "Biomasa Generator",
+  "block.solarium.biomass_gen": "Biomass Generator",
+  "block.solarium.photosmelter": "Photosmelter",
 
   "message.solarium.energy_meter.reading": "Stored Energy: %s / %s FE",
   "message.solarium.energy_meter.none": "No energy capability found.",
   "tooltip.solarium.energy_item": "Reads stored FE from generators.",
-  "tooltip.solarium.energy_item.crouch": "Sneak-right-click a generator to scan."
+  "tooltip.solarium.energy_item.crouch": "Sneak-right-click a generator to scan.",
+  "tooltip.solarium.sunflower_generator": "Generates FE when exposed to the sun."
 }

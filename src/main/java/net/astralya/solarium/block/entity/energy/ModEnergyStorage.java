@@ -1,9 +1,9 @@
-package net.astralya.solarium.block.entity.custom.energy;
-
+package net.astralya.solarium.block.entity.energy;
 
 import net.neoforged.neoforge.energy.EnergyStorage;
 
 public abstract class ModEnergyStorage extends EnergyStorage {
+
     public ModEnergyStorage(int capacity, int maxTransfer) {
         super(capacity, maxTransfer);
     }
@@ -16,6 +16,15 @@ public abstract class ModEnergyStorage extends EnergyStorage {
         }
 
         return extractedEnergy;
+    }
+
+    public int extractInternal(int amount) {
+        int toExtract = Math.min(amount, this.energy);
+        if (toExtract > 0) {
+            this.energy -= toExtract;
+            onEnergyChanged();
+        }
+        return toExtract;
     }
 
     @Override

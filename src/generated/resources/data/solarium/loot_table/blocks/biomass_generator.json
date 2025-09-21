@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "solarium:biomasa_gen"
+          "name": "solarium:biomass_generator"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "solarium:blocks/biomasa_gen"
+  "random_sequence": "solarium:blocks/biomass_generator"
 }

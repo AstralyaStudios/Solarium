@@ -1,1 +1,5 @@
-// 1.21.1	2025-09-13T11:01:57.8167562	Recipes
+// 1.21.1	2025-09-21T13:27:31.1795871	Recipes
+bea4fda05cf529dc1eb1758c8f2de61f9d62b339 data/minecraft/advancement/recipes/misc/solarium_ingot_from_blasting_solarium_dust.json
+b46cdcefe44e04b917da364b49c92235187ee70b data/minecraft/advancement/recipes/misc/solarium_ingot_from_smelting_solarium_dust.json
+ac737340e2137959132dcb049c728a1741af0753 data/minecraft/recipe/solarium_ingot_from_blasting_solarium_dust.json
+25157254448697e89fe7850246848f0d2d645c97 data/minecraft/recipe/solarium_ingot_from_smelting_solarium_dust.json

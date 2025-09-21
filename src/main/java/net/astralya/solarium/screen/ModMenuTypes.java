@@ -1,6 +1,7 @@
 package net.astralya.solarium.screen;
 
 import net.astralya.solarium.SolariumMod;
+import net.astralya.solarium.screen.custom.PhotosmelterMenu;
 import net.astralya.solarium.screen.custom.SunflowerGeneratorMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -17,6 +18,11 @@ public class ModMenuTypes {
 
     public static final DeferredHolder<MenuType<?>, MenuType<SunflowerGeneratorMenu>> SUNFLOWER_GENERATOR_MENU =
             registerMenuType("sunflower_generator_menu", SunflowerGeneratorMenu::new);
+
+    public static final DeferredHolder<MenuType<?>, MenuType<PhotosmelterMenu>> PHOTOSMELTER =
+            MENUS.register("photosmelter",
+                    () -> IMenuTypeExtension.create((id, inv, buf) -> new PhotosmelterMenu(id, inv))
+            );
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>,
                 MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {

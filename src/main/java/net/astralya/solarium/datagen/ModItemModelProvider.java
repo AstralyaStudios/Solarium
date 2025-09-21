@@ -14,10 +14,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        // Basic Item
         basicItem(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
-        handheldItem(ModItems.WRENCH.get());
-        handheldItem(ModItems.SOLARIUM_DUST.get());
+        basicItem(ModItems.SOLARIUM_DUST.get());
+        basicItem(ModItems.SOLARIUM_INGOT.get());
         basicItem(ModItems.ENERGY_METER.get());
 
+        // Handheld
+        handheldItem(ModItems.WRENCH.get());
     }
 }

@@ -1,6 +1,7 @@
 package net.astralya.solarium.block;
 
 import net.astralya.solarium.SolariumMod;
+import net.astralya.solarium.block.custom.PhotosmelterBlock;
 import net.astralya.solarium.block.custom.SunflowerGeneratorBlock;
 import net.astralya.solarium.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -27,9 +28,10 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion().lightLevel(state -> 15)));
 
     // Machines Blocks
-    public static final DeferredBlock<Block> BIOMASA_GEN = registerBlock("biomasa_gen",
+    public static final DeferredBlock<Block> BIOMASS_GENERATOR = registerBlock("biomass_generator",
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
-
+    public static final DeferredBlock<Block> PHOTOSMELTER = registerBlock("photosmelter",
+            () -> new PhotosmelterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
@@ -44,5 +46,4 @@ public class ModBlocks {
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
     }
-
 }

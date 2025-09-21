@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_solarium_dust": {
+      "conditions": {
+        "items": [
+          {
+            "items": "solarium:solarium_dust"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:solarium_ingot_from_smelting_solarium_dust"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_solarium_dust"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:solarium_ingot_from_smelting_solarium_dust"
+    ]
+  }
+}
