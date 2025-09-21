@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.25,
+  "group": "solarium_ingot",
+  "ingredient": {
+    "item": "solarium:solarium_dust"
+  },
+  "result": {
+    "count": 1,
+    "id": "solarium:solarium_ingot"
+  }
+}

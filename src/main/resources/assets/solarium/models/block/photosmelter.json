@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "solarium:block/photosmelter_front",
+    "side": "solarium:block/photosmelter_side",
+    "top": "solarium:block/photosmelter_top"
+  }
+}

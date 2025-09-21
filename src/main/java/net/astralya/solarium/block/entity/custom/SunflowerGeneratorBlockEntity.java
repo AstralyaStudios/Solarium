@@ -1,9 +1,10 @@
 package net.astralya.solarium.block.entity.custom;
 
+import net.astralya.solarium.Configuration;
 import net.astralya.solarium.block.custom.SunflowerGeneratorBlock;
 import net.astralya.solarium.block.entity.ModBlockEntityTypes;
-import net.astralya.solarium.block.entity.custom.energy.ModEnergyStorage;
-import net.astralya.solarium.block.entity.custom.energy.ModEnergyUtil;
+import net.astralya.solarium.block.entity.energy.ModEnergyStorage;
+import net.astralya.solarium.block.entity.energy.ModEnergyUtil;
 import net.astralya.solarium.screen.custom.SunflowerGeneratorMenu;
 import net.astralya.solarium.util.SunlightCheck;
 import net.minecraft.core.BlockPos;
@@ -34,9 +35,6 @@ import org.joml.Vector3f;
 
 public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements MenuProvider {
 
-    private static final int MAX_PRODUCTION_PER_TICK = 320;
-    private static final int ENERGY_TRANSFER_AMOUNT = 320;
-
     private final ModEnergyStorage ENERGY_STORAGE = createEnergyStorage();
     private SunlightCheck sun;
     private int lastProduction;
@@ -64,7 +62,7 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         public int get(int index) {
             return switch (index) {
                 case 0 -> lastProduction;
-                case 1 -> MAX_PRODUCTION_PER_TICK;
+                case 1 -> maxProductionPerTick();
                 default -> 0;
             };
         }
@@ -85,13 +83,32 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
     }
 
     private ModEnergyStorage createEnergyStorage() {
-        return new ModEnergyStorage(64_000, 320) {
+        return new ModEnergyStorage(capacity(), energyTransferPerTick()) {
             @Override
             public void onEnergyChanged() {
                 setChanged();
-                getLevel().sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), 3);
+                Level level = getLevel();
+                if (level != null && !level.isClientSide()) {
+                    level.sendBlockUpdated(getBlockPos(), getBlockState(), getBlockState(), Block.UPDATE_CLIENTS);
+                }
             }
         };
+    }
+
+    private int maxProductionPerTick() {
+        return Configuration.SUNFLOWER_MAX_PRODUCTION_PER_TICK.get();
+    }
+
+    private int energyTransferPerTick() {
+        return Configuration.SUNFLOWER_ENERGY_TRANSFER_AMOUNT.get();
+    }
+
+    private int capacity() {
+        return Configuration.SUNFLOWER_CAPACITY.get();
+    }
+
+    private boolean emitParticles() {
+        return Configuration.SUNFLOWER_EMIT_PARTICLES.get();
     }
 
     @Override
@@ -105,8 +122,28 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         }
     }
 
+    private static final IEnergyStorage EMPTY_ENERGY = new IEnergyStorage() {
+        @Override public int receiveEnergy(int maxReceive, boolean simulate) { return 0; }
+        @Override public int extractEnergy(int maxExtract, boolean simulate) { return 0; }
+        @Override public int getEnergyStored() { return 0; }
+        @Override public int getMaxEnergyStored() { return 0; }
+        @Override public boolean canExtract() { return false; }
+        @Override public boolean canReceive() { return false; }
+    };
+
+    private final IEnergyStorage EXTRACT_ONLY = new IEnergyStorage() {
+        @Override public int receiveEnergy(int maxReceive, boolean simulate) { return 0; }
+        @Override public int extractEnergy(int maxExtract, boolean simulate) { return ENERGY_STORAGE.extractEnergy(maxExtract, simulate); }
+        @Override public int getEnergyStored() { return ENERGY_STORAGE.getEnergyStored(); }
+        @Override public int getMaxEnergyStored() { return ENERGY_STORAGE.getMaxEnergyStored(); }
+        @Override public boolean canExtract() { return true; }
+        @Override public boolean canReceive() { return false; }
+    };
+
     public IEnergyStorage getEnergyStorage(@Nullable Direction direction) {
-        return ENERGY_STORAGE;
+        if (direction == null) return ENERGY_STORAGE;
+        if (direction == Direction.DOWN) return EXTRACT_ONLY;
+        return EMPTY_ENERGY;
     }
 
     @Override
@@ -140,17 +177,19 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         if (ENERGY_STORAGE.getEnergyStored() < ENERGY_STORAGE.getMaxEnergyStored()) {
             float brightness = SunlightCheck.getSunBrightness(level, 1.0F);
             float mult = sun.getGenerationMultiplier();
-            float scaled = MAX_PRODUCTION_PER_TICK * (brightness * mult);
+            float scaled = maxProductionPerTick() * (brightness * mult);
             if (scaled > 0) {
-                produced = (int) Math.min(MAX_PRODUCTION_PER_TICK, Math.floor(scaled));
-                ENERGY_STORAGE.receiveEnergy(produced, false);
+                produced = Math.min(maxProductionPerTick(), (int) Math.floor(scaled));
+                if (produced > 0) {
+                    ENERGY_STORAGE.receiveEnergy(produced, false);
+                }
             }
         }
 
         lastProduction = produced;
         updateLit(sun.canSeeSunNow());
         spawnPanelParticles(level, pos, state, produced);
-        pushEnergyToNeighbourAbove();
+        pushEnergyToNeighbourBelow();
     }
 
     private void updateLit(boolean lit) {
@@ -164,6 +203,7 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
     }
 
     private void spawnPanelParticles(Level level, BlockPos pos, BlockState state, int produced) {
+        if (!emitParticles()) return;
         if (!(level instanceof ServerLevel server)) return;
         if (produced <= 0) return;
 
@@ -207,10 +247,14 @@ public class SunflowerGeneratorBlockEntity extends SyncBlockEntity implements Me
         };
     }
 
-    private void pushEnergyToNeighbourAbove() {
-        if (ModEnergyUtil.doesBlockHaveEnergyStorage(this.worldPosition.above(), this.level)) {
-            ModEnergyUtil.move(this.worldPosition, this.worldPosition.above(), ENERGY_TRANSFER_AMOUNT, this.level);
-        }
+    private void pushEnergyToNeighbourBelow() {
+        if (level == null) return;
+        ModEnergyUtil.move(
+                level,
+                this.worldPosition, Direction.DOWN,
+                this.worldPosition.below(), Direction.UP,
+                energyTransferPerTick()
+        );
     }
 
     @Override

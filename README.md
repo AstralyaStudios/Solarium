@@ -12,4 +12,4 @@ These are the features added in the current version of the mod:
 
 Solarium is a work in progress. More features will be added over time. Follow our development journey on Discord and GitHub.
 
-[Discord](https://discord.gg/fcbH6BqW3X) | [GitHub](https://github.com/GrapeStudios/Hexalia)
+[Discord](https://discord.gg/fcbH6BqW3X) | [GitHub](https://github.com/AstralyaStudios/Solarium)

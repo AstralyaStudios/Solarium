@@ -5,6 +5,7 @@ import net.astralya.solarium.block.entity.ModBlockEntityTypes;
 import net.astralya.solarium.item.ModCreativeModeTabs;
 import net.astralya.solarium.item.ModItems;
 import net.astralya.solarium.screen.ModMenuTypes;
+import net.astralya.solarium.screen.custom.PhotosmelterScreen;
 import net.astralya.solarium.screen.custom.SunflowerGeneratorScreen;
 import net.astralya.solarium.sound.ModSoundEvents;
 import net.neoforged.api.distmarker.Dist;
@@ -12,7 +13,6 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.event.sound.SoundEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -26,7 +26,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 
-import java.util.function.Supplier;
 
 @Mod(SolariumMod.MODID)
 public class SolariumMod {
@@ -79,6 +78,7 @@ public class SolariumMod {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.SUNFLOWER_GENERATOR_MENU.get(), SunflowerGeneratorScreen::new);
+            event.register(ModMenuTypes.PHOTOSMELTER.get(), PhotosmelterScreen::new);
         }
     }
 }
