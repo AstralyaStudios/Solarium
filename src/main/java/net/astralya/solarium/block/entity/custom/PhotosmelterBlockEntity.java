@@ -11,7 +11,9 @@ import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -92,7 +94,8 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                 .getRecipeFor(RecipeType.SMELTING, input, level)
                 .orElse(null);
 
-        if (match != null && canSmelt(match, input)) {
+        boolean canWork = match != null && canSmelt(match, input);
+        if (canWork) {
             if (maxProgress == 0) {
                 maxProgress = match.value().getCookingTime();
                 energyPaidThisCycle = 0;
@@ -122,6 +125,7 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                     if (paidNow < stillOwed) {
                         progress = maxProgress - 1;
                         setChanged();
+                        updateLit(progress > 0);
                         return;
                     }
                 }
@@ -132,13 +136,18 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                 energyPaidThisCycle = 0;
                 setChanged();
             }
-        } else if (progress != 0 || maxProgress != 0) {
-            progress = 0;
-            maxProgress = 0;
-            energyPaidThisCycle = 0;
-            setChanged();
+        } else {
+            if (progress != 0 || maxProgress != 0) {
+                progress = 0;
+                maxProgress = 0;
+                energyPaidThisCycle = 0;
+                setChanged();
+            }
         }
+
+        updateLit(progress > 0);
     }
+
 
     private void pullEnergyFromAbove() {
         if (level == null) return;
@@ -187,6 +196,27 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
 
     public int getMaxProgress() {
         return maxProgress;
+    }
+
+    private void updateLit(boolean lit) {
+        if (level == null) return;
+        BlockState s = getBlockState();
+        if (!s.hasProperty(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT)) return;
+        if (s.getValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT) != lit) {
+            level.setBlock(worldPosition, s.setValue(net.minecraft.world.level.block.state.properties.BlockStateProperties.LIT, lit), Block.UPDATE_ALL);
+        }
+    }
+
+    public void drops() {
+        if (level == null || level.isClientSide()) return;
+
+        SimpleContainer container = new SimpleContainer(INV_SIZE);
+        for (int i = 0; i < INV_SIZE; i++) {
+            container.setItem(i, items.get(i).copy());
+            items.set(i, ItemStack.EMPTY);
+        }
+        Containers.dropContents(level, worldPosition, container);
+        setChanged();
     }
 
     @Override

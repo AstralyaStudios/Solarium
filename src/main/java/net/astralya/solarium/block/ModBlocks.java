@@ -16,13 +16,15 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
+import static net.astralya.solarium.block.custom.PhotosmelterBlock.LIT;
+
 public class ModBlocks {
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(SolariumMod.MODID);
 
     // Energy Generators
     public static final DeferredBlock<Block> SUNFLOWER_GENERATOR = registerBlock("sunflower_generator",
-            () -> new SunflowerGeneratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK).noOcclusion()));
+            () -> new SunflowerGeneratorBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS).noOcclusion()));
 
     // Decorative Blocks
     public static final DeferredBlock<Block> LED_PANEL = registerBlock("led_panel",
@@ -32,7 +34,7 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BIOMASS_GENERATOR = registerBlock("biomass_generator",
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));
     public static final DeferredBlock<Block> PHOTOSMELTER = registerBlock("photosmelter",
-            () -> new PhotosmelterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+            () -> new PhotosmelterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BLAST_FURNACE).lightLevel(state -> state.getValue(LIT) ? 12 : 0)));
 
     public static final DeferredBlock<Block> CABLE = registerBlock("cable",
             () -> new Block(BlockBehaviour.Properties.of().noOcclusion()));

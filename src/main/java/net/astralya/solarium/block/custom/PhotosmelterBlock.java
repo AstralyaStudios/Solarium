@@ -5,6 +5,10 @@ import net.astralya.solarium.block.entity.ModBlockEntityTypes;
 import net.astralya.solarium.block.entity.custom.PhotosmelterBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -45,6 +49,38 @@ public class PhotosmelterBlock extends AbstractFurnaceBlock {
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new PhotosmelterBlockEntity(pos, state);
+    }
+
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (state.getValue(LIT)) {
+            double d0 = (double)pos.getX() + (double)0.5F;
+            double d1 = pos.getY();
+            double d2 = (double)pos.getZ() + (double)0.5F;
+            if (random.nextDouble() < 0.1) {
+                level.playLocalSound(d0, d1, d2, SoundEvents.BLASTFURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0F, 1.0F, false);
+            }
+
+            Direction direction = state.getValue(FACING);
+            Direction.Axis direction$axis = direction.getAxis();
+            double d3 = 0.52;
+            double d4 = random.nextDouble() * 0.6 - 0.3;
+            double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : d4;
+            double d6 = random.nextDouble() * (double)9.0F / (double)16.0F;
+            double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : d4;
+            level.addParticle(ParticleTypes.SMOKE, d0 + d5, d1 + d6, d2 + d7, 0.0F, 0.0F, 0.0F);
+        }
+
+    }
+
+    @Override
+    protected void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
+        if (state.getBlock() != newState.getBlock()) {
+            if (level.getBlockEntity(pos) instanceof PhotosmelterBlockEntity photosmelterBlockEntity) {
+                photosmelterBlockEntity.drops();
+                level.updateNeighbourForOutputSignal(pos, this);
+            }
+        }
+        super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
     @Override
