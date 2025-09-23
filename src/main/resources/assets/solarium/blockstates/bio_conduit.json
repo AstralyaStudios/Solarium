@@ -1,0 +1,42 @@
+{
+  "multipart": [
+    { "when": { "lit": "false" }, "apply": { "model": "solarium:block/bio_conduit_core" } },
+    { "when": { "lit": "true"  }, "apply": { "model": "solarium:block/bio_conduit_core_on" } },
+
+    { "when": { "lit": "false", "north": "true" }, "apply": { "model": "solarium:block/bio_conduit_part", "uvlock": false } },
+    { "when": { "lit": "true",  "north": "true" }, "apply": { "model": "solarium:block/bio_conduit_part_on", "uvlock": false } },
+
+    { "when": { "lit": "false", "east": "true"  }, "apply": { "model": "solarium:block/bio_conduit_part", "y": 90,  "uvlock": false } },
+    { "when": { "lit": "true",  "east": "true"  }, "apply": { "model": "solarium:block/bio_conduit_part_on", "y": 90,  "uvlock": false } },
+
+    { "when": { "lit": "false", "south": "true" }, "apply": { "model": "solarium:block/bio_conduit_part", "y": 180, "uvlock": false } },
+    { "when": { "lit": "true",  "south": "true" }, "apply": { "model": "solarium:block/bio_conduit_part_on", "y": 180, "uvlock": false } },
+
+    { "when": { "lit": "false", "west": "true"  }, "apply": { "model": "solarium:block/bio_conduit_part", "y": 270, "uvlock": false } },
+    { "when": { "lit": "true",  "west": "true"  }, "apply": { "model": "solarium:block/bio_conduit_part_on", "y": 270, "uvlock": false } },
+
+    { "when": { "lit": "false", "up": "true"    }, "apply": { "model": "solarium:block/bio_conduit_part", "x": 270, "uvlock": false } },
+    { "when": { "lit": "true",  "up": "true"    }, "apply": { "model": "solarium:block/bio_conduit_part_on", "x": 270, "uvlock": false } },
+
+    { "when": { "lit": "false", "down": "true"  }, "apply": { "model": "solarium:block/bio_conduit_part", "x": 90,  "uvlock": false } },
+    { "when": { "lit": "true",  "down": "true"  }, "apply": { "model": "solarium:block/bio_conduit_part_on", "x": 90,  "uvlock": false } },
+
+    { "when": { "lit": "false", "north": "true", "extract_north": "true" }, "apply": { "model": "solarium:block/bio_conduit_extract", "uvlock": false } },
+    { "when": { "lit": "true",  "north": "true", "extract_north": "true" }, "apply": { "model": "solarium:block/bio_conduit_extract_on", "uvlock": false } },
+
+    { "when": { "lit": "false", "east": "true",  "extract_east":  "true" }, "apply": { "model": "solarium:block/bio_conduit_extract", "y": 90,  "uvlock": false } },
+    { "when": { "lit": "true",  "east": "true",  "extract_east":  "true" }, "apply": { "model": "solarium:block/bio_conduit_extract_on", "y": 90,  "uvlock": false } },
+
+    { "when": { "lit": "false", "south": "true", "extract_south": "true" }, "apply": { "model": "solarium:block/bio_conduit_extract", "y": 180, "uvlock": false } },
+    { "when": { "lit": "true",  "south": "true", "extract_south": "true" }, "apply": { "model": "solarium:block/bio_conduit_extract_on", "y": 180, "uvlock": false } },
+
+    { "when": { "lit": "false", "west": "true",  "extract_west":  "true" }, "apply": { "model": "solarium:block/bio_conduit_extract", "y": 270, "uvlock": false } },
+    { "when": { "lit": "true",  "west": "true",  "extract_west":  "true" }, "apply": { "model": "solarium:block/bio_conduit_extract_on", "y": 270, "uvlock": false } },
+
+    { "when": { "lit": "false", "up": "true",    "extract_up":    "true" }, "apply": { "model": "solarium:block/bio_conduit_extract", "x": 270, "uvlock": false } },
+    { "when": { "lit": "true",  "up": "true",    "extract_up":    "true" }, "apply": { "model": "solarium:block/bio_conduit_extract_on", "x": 270, "uvlock": false } },
+
+    { "when": { "lit": "false", "down": "true",  "extract_down":  "true" }, "apply": { "model": "solarium:block/bio_conduit_extract", "x": 90,  "uvlock": false } },
+    { "when": { "lit": "true",  "down": "true",  "extract_down":  "true" }, "apply": { "model": "solarium:block/bio_conduit_extract_on", "x": 90,  "uvlock": false } }
+  ]
+}

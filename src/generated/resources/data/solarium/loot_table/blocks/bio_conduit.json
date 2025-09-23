@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "solarium:cable"
+          "name": "solarium:bio_conduit"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "solarium:blocks/cable"
+  "random_sequence": "solarium:blocks/bio_conduit"
 }

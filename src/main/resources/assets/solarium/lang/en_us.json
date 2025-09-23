@@ -13,8 +13,7 @@
   "block.solarium.biomass_generator": "Biomass Generator",
   "block.solarium.photosmelter": "Photosmelter",
   "block.solarium.generadoes": "Generadoes",
-  "block.solarium.cable": "Energy Cable",
-
+  "block.solarium.bio_conduit": "Bio-Conduit",
 
   "message.solarium.energy_meter.reading": "Stored Energy: %s / %s FE",
   "message.solarium.energy_meter.none": "No energy capability found.",

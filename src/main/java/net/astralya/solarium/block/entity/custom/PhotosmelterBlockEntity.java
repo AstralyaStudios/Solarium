@@ -38,6 +38,9 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
     private static final int ENERGY_PER_TICK_LIMIT = 20;
     private static final int ENERGY_PER_ITEM = 1000;
 
+    private static final int LIT_HOLD_TICKS = 4;
+    private int litHold = 0;
+
     private int energyPaidThisCycle = 0;
 
     private final ModEnergyStorage energy = new ModEnergyStorage(ENERGY_CAPACITY, MAX_RECEIVE) {
@@ -95,6 +98,8 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                 .orElse(null);
 
         boolean canWork = match != null && canSmelt(match, input);
+        boolean didWorkThisTick = false;
+
         if (canWork) {
             if (maxProgress == 0) {
                 maxProgress = match.value().getCookingTime();
@@ -109,10 +114,12 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                 energyPaidThisCycle += extracted;
                 if (extracted > 0) {
                     progress++;
+                    didWorkThisTick = true;
                     setChanged();
                 }
             } else {
                 progress++;
+                didWorkThisTick = true;
                 setChanged();
             }
 
@@ -125,7 +132,10 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                     if (paidNow < stillOwed) {
                         progress = maxProgress - 1;
                         setChanged();
-                        updateLit(progress > 0);
+                        if (progress > 0) {
+                            litHold = LIT_HOLD_TICKS;
+                        }
+                        updateLit(progress > 0 || litHold > 0);
                         return;
                     }
                 }
@@ -134,6 +144,7 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
                 progress = 0;
                 maxProgress = 0;
                 energyPaidThisCycle = 0;
+                didWorkThisTick = true;
                 setChanged();
             }
         } else {
@@ -145,9 +156,14 @@ public class PhotosmelterBlockEntity extends SyncBlockEntity implements MenuProv
             }
         }
 
-        updateLit(progress > 0);
-    }
+        if (didWorkThisTick) {
+            litHold = LIT_HOLD_TICKS;
+        } else if (litHold > 0) {
+            litHold--;
+        }
 
+        updateLit(progress > 0 || litHold > 0);
+    }
 
     private void pullEnergyFromAbove() {
         if (level == null) return;

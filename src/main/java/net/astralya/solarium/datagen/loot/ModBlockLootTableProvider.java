@@ -22,7 +22,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BIOMASS_GENERATOR.get());
         this.dropSelf(ModBlocks.PHOTOSMELTER.get());
         this.dropSelf(ModBlocks.GENERADOES.get());
-        this.dropSelf(ModBlocks.CABLE.get());
+        this.dropSelf(ModBlocks.BIO_CONDUIT.get());
     }
 
     @Override

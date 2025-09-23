@@ -2,6 +2,7 @@ package net.astralya.solarium.block.entity;
 
 import net.astralya.solarium.SolariumMod;
 import net.astralya.solarium.block.ModBlocks;
+import net.astralya.solarium.block.entity.custom.BioConduitBlockEntity;
 import net.astralya.solarium.block.entity.custom.PhotosmelterBlockEntity;
 import net.astralya.solarium.block.entity.custom.SunflowerGeneratorBlockEntity;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -16,11 +17,17 @@ public class ModBlockEntityTypes {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPE =
             DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, SolariumMod.MODID);
 
+    // Generators
     public static final Supplier<BlockEntityType<SunflowerGeneratorBlockEntity>> SUNFLOWER_GENERATOR = BLOCK_ENTITY_TYPE.register("sunflower_generator",
             () -> BlockEntityType.Builder.of(SunflowerGeneratorBlockEntity::new, ModBlocks.SUNFLOWER_GENERATOR.get()).build(null));
 
+    // Machines
     public static final Supplier<BlockEntityType<PhotosmelterBlockEntity>> PHOTOSMELTER = BLOCK_ENTITY_TYPE.register("photosmelter",
             () -> BlockEntityType.Builder.of(PhotosmelterBlockEntity::new, ModBlocks.PHOTOSMELTER.get()).build(null));
+
+    // Other
+    public static final Supplier<BlockEntityType<BioConduitBlockEntity>> BIO_CONDUIT = BLOCK_ENTITY_TYPE.register("bio_conduit",
+            () -> BlockEntityType.Builder.of(BioConduitBlockEntity::new, ModBlocks.BIO_CONDUIT.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPE.register(eventBus);

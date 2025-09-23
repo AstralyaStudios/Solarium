@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "G": {
+      "item": "solarium:solarium_ingot"
+    },
+    "R": {
+      "item": "minecraft:iron_ingot"
+    },
+    "T": {
+      "item": "minecraft:glass_pane"
+    }
+  },
+  "pattern": [
+    " T ",
+    "RGR",
+    " R "
+  ],
+  "result": {
+    "count": 1,
+    "id": "solarium:energy_meter"
+  }
+}

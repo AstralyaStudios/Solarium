@@ -43,7 +43,7 @@ public class SunflowerGeneratorBlock extends BaseEntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
-    public static final VoxelShape SHAPE = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 1.5F, 15.0F);
+    public static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 6, 14);
 
     public static final MapCodec<SunflowerGeneratorBlock> CODEC = simpleCodec(SunflowerGeneratorBlock::new);
 

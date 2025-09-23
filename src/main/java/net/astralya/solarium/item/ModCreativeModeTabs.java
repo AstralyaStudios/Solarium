@@ -25,20 +25,19 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.ENERGY_METER.get());
                 output.accept(ModItems.SOLARIUM_DUST.get());
                 output.accept(ModItems.SOLARIUM_INGOT.get());
-                output.accept(ModBlocks.CABLE.get());
+                output.accept(ModBlocks.BIO_CONDUIT.get());
 
                 // Energy Generator
                 output.accept(ModBlocks.SUNFLOWER_GENERATOR);
 
                 // Machine Blocks
-                output.accept(ModBlocks.BIOMASS_GENERATOR);
+                // output.accept(ModBlocks.BIOMASS_GENERATOR);
                 output.accept(ModBlocks.PHOTOSMELTER);
-                output.accept(ModBlocks.GENERADOES);
-                output.accept(ModBlocks.LED_PANEL.get());
+                // output.accept(ModBlocks.GENERADOES);
+                // output.accept(ModBlocks.LED_PANEL.get());
 
                 // Misc Items
                 output.accept(ModItems.ETERNAL_NIGHT_MUSIC_DISC.get());
-
             })
             .build());
 

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "S": {
+      "item": "minecraft:copper_ingot"
+    }
+  },
+  "pattern": [
+    " S ",
+    " SS",
+    "S  "
+  ],
+  "result": {
+    "count": 1,
+    "id": "solarium:wrench"
+  }
+}

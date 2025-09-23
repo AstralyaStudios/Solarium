@@ -13,17 +13,15 @@ import java.util.function.Supplier;
 
 public class ModSoundEvents {
 
-    public static final DeferredRegister<SoundEvent> SOUND_EVENTS =
-            DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, SolariumMod.MODID);
+    public static final DeferredRegister<SoundEvent> SOUND_EVENTS = DeferredRegister.create(BuiltInRegistries.SOUND_EVENT, SolariumMod.MODID);
 
-    // ETERNAL NIGHT DISCO DE MUSICA
+    // Eternal Night Music Disc
     public static final Supplier<SoundEvent> ETERNAL_NIGHT = registerSoundEvent("eternal_night");
     public static final ResourceKey<JukeboxSong> ETERNAL_NIGHT_KEY = createSong("eternal_night");
 
     private static ResourceKey<JukeboxSong> createSong(String name) {
         return ResourceKey.create(Registries.JUKEBOX_SONG, ResourceLocation.fromNamespaceAndPath(SolariumMod.MODID, name));
     }
-
 
     private static Supplier<SoundEvent> registerSoundEvent(String name) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(SolariumMod.MODID, name);

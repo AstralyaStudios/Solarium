@@ -42,7 +42,7 @@ public class PhotosmelterBlock extends AbstractFurnaceBlock {
     }
 
     @Override
-    protected MapCodec<? extends AbstractFurnaceBlock> codec() {
+    protected MapCodec<? extends PhotosmelterBlock> codec() {
         return CODEC;
     }
 
