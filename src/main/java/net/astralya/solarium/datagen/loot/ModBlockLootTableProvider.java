@@ -23,6 +23,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.PHOTOSMELTER.get());
         this.dropSelf(ModBlocks.GENERADOES.get());
         this.dropSelf(ModBlocks.BIO_CONDUIT.get());
+        this.dropSelf(ModBlocks.BATTERY.get());
     }
 
     @Override

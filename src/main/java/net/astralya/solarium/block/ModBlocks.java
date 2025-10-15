@@ -40,6 +40,8 @@ public class ModBlocks {
             () -> new BioConduitBlock(BlockBehaviour.Properties.of().noOcclusion()));
     public static final DeferredBlock<Block> GENERADOES = registerBlock("generadoes",
             () -> new GeneradoesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
+    public static final DeferredBlock<Block> BATTERY = registerBlock("battery",
+            () -> new GeneradoesBlock(BlockBehaviour.Properties.of().noOcclusion()));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

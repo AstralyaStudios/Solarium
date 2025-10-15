@@ -26,6 +26,7 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.SOLARIUM_DUST.get());
                 output.accept(ModItems.SOLARIUM_INGOT.get());
                 output.accept(ModBlocks.BIO_CONDUIT.get());
+                output.accept(ModBlocks.BATTERY.get());
 
                 // Energy Generator
                 output.accept(ModBlocks.SUNFLOWER_GENERATOR);

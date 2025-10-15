@@ -1,6 +1,7 @@
 package net.astralya.solarium.datagen;
 
 import net.astralya.solarium.SolariumMod;
+import net.astralya.solarium.block.ModBlocks;
 import net.astralya.solarium.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -19,6 +20,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.SOLARIUM_DUST.get());
         basicItem(ModItems.SOLARIUM_INGOT.get());
         basicItem(ModItems.ENERGY_METER.get());
+
 
         // Handheld
         handheldItem(ModItems.WRENCH.get());

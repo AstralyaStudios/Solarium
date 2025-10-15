@@ -1,4 +1,5 @@
-// 1.21.1	2025-09-22T12:17:51.9589179	Loot Tables
+// 1.21.1	2025-10-14T21:30:56.8148349	Loot Tables
+b0ec514390e4618cba708588c8638de71e748288 data/solarium/loot_table/blocks/battery.json
 c41233a100dac300c01372a8091592e05d2b99a3 data/solarium/loot_table/blocks/biomass_generator.json
 63d9f4a7fb4a944c589b80c4b1dda6793b494778 data/solarium/loot_table/blocks/bio_conduit.json
 eb9afee8bd01072ad1dda8715e936ca1349b2899 data/solarium/loot_table/blocks/generadoes.json
