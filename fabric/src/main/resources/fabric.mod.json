@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "solareum",
+  "version": "${version}",
+  "name": "Solareum",
+  "description": "A clean Solareum Architectury workspace.",
+  "authors": [
+    "Astralya"
+  ],
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.astralya.solareum.fabric.SolareumFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "architectury": ">=13.0.8",
+    "fabric-api": "*"
+  }
+}

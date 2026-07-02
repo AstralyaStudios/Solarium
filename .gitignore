@@ -1,0 +1,17 @@
+.gradle/
+build/
+**/build/
+out/
+run/
+runs/
+logs/
+crash-reports/
+loom-cache/
+**/loom-cache/
+.idea/
+*.iml
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
